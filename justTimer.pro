@@ -25,10 +25,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        dialog.cpp
+    stimer.cpp
 
 HEADERS += \
-        dialog.h
+    stimer.h
 
 FORMS += \
-        dialog.ui
+    stimer.ui
