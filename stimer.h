@@ -16,10 +16,12 @@ public:
     explicit STimer(QWidget *parent = 0);
     ~STimer();
     QTimer *timer;
+    QTimer *mini_timer;
 
 private slots:
     void on_pushButton_clicked();
     void endOfTimer();
+    void endOfMiniTimer();
 
 private:
 
