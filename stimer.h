@@ -18,10 +18,14 @@ public:
     QTimer *timer;
     QTimer *mini_timer;
 
+    int intermediate_value;
+
 private slots:
     void on_pushButton_clicked();
     void endOfTimer();
     void endOfMiniTimer();
+    void on_pushButton_3_clicked();
+    void on_pushButton_2_clicked();
 
 private:
 

@@ -5,7 +5,8 @@
 // Constructor
 STimer::STimer(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::STimer)
+    ui(new Ui::STimer),
+    intermediate_value(0)
 {
     ui->setupUi(this);
 
@@ -33,11 +34,14 @@ void STimer::on_pushButton_clicked()
     ui->timeEdit->setTime(g);
     timer->start(g.msecsSinceStartOfDay());
     mini_timer->start(25);
+
+    ui->pushButton_2->setEnabled(true);
 }
 
 void STimer::endOfTimer()
 {
     // End of main timer
+    ui->pushButton_2->setEnabled(false);
     timer->stop();
 }
 
@@ -50,7 +54,8 @@ void STimer::endOfMiniTimer()
     }
     else
     {
-        ui->timeEdit->setTime(QTime::fromMSecsSinceStartOfDay(0));
+        if (!intermediate_value)
+            ui->timeEdit->setTime(QTime::fromMSecsSinceStartOfDay(0));
         mini_timer->stop();
     }
 }
@@ -59,4 +64,22 @@ void STimer::on_pushButton_3_clicked()
 {
     // Quit button
     this->close();
+}
+
+void STimer::on_pushButton_2_clicked()
+{
+    // Stop button
+    if (ui->pushButton_2->text() == "Stop")
+    {
+        ui->pushButton_2->setText("Resume");
+        intermediate_value = timer->remainingTime();
+        timer->stop();
+    }
+    else
+    {
+        ui->pushButton_2->setText("Stop");
+        timer->start(intermediate_value);
+        intermediate_value = 0;
+        mini_timer->start(25);
+    }
 }
