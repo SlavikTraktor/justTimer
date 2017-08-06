@@ -16,6 +16,10 @@ STimer::STimer(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(endOfTimer()));
     connect(mini_timer, SIGNAL(timeout()), this, SLOT(endOfMiniTimer()));
 
+    QFont mfont("", 150);
+
+    ui->timeEdit->setFont(mfont);
+
     setWindowState(Qt::WindowFullScreen);
 }
 
